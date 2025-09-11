@@ -7,4 +7,5 @@ import com.jobfinder.jobapplication.job.Job;
 public interface JobService {
     List<Job> findAll();
     void createJob(Job job);
+    Job getJobById(Long id);
 }
