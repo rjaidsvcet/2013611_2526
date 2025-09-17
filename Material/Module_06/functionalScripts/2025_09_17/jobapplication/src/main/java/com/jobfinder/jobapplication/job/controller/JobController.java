@@ -4,6 +4,8 @@ package com.jobfinder.jobapplication.job.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,28 +26,21 @@ public class JobController {
     // }
 
     @GetMapping("/jobs")
-    public List<Job> findAll () {
-        return service.findAll();
+    public ResponseEntity<List<Job>> findAll () {
+        return ResponseEntity.ok(service.findAll());
     }
 
     @PostMapping("/jobs")
-    public String addJob (@RequestBody Job job) {
+    public ResponseEntity<String> addJob (@RequestBody Job job) {
         service.createJob(job);
-        return "Works";
+        return new ResponseEntity<>("Works", HttpStatus.CREATED);
     }
 
     @GetMapping("/jobs/{id}")
-    public Job getSingleJob(@PathVariable Long id) {
+    public ResponseEntity<Job> getSingleJob(@PathVariable Long id) {
         Job job = service.getJobById(id);
         if (job != null)
-            return job;
-        return new Job(
-            1L,
-            "testTitle",
-            "testDesc",
-            "test minSal",
-            "test maxSal",
-            "testLocation"
-        );
+            return new ResponseEntity<>(job, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
