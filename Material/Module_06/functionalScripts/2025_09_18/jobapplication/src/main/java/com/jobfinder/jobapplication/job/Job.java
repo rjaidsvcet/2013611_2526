@@ -1,12 +1,26 @@
 package com.jobfinder.jobapplication.job;
 
+import jakarta.annotation.Generated;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Job {
+    @Id
+    // @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String title;
     private String description;
     private String minSalary;
     private String maxSalary;
     private String location;
+
+    public Job () {
+
+    }
+
     public Long getId() {
         return id;
     }

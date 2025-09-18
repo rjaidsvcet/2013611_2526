@@ -1,64 +1,64 @@
 package com.jobfinder.jobapplication.job.service.implementation;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jobfinder.jobapplication.job.Job;
+import com.jobfinder.jobapplication.job.repository.JobRepo;
 import com.jobfinder.jobapplication.job.service.JobService;
 
 @Service
 public class JobServiceImpl implements JobService {
 
-    private List<Job> jobs = new ArrayList<>();
+    @Autowired
+    private JobRepo repo;
+    // public JobServiceImpl(JobRepo repo) {
+    //     this.repo = repo;
+    // }
+
     private Long newId = 1L;
 
     @Override
     public List<Job> findAll() {
-        return jobs;
+        return repo.findAll();
     }
 
     @Override
     public void createJob(Job job) {
         job.setId(newId++);
-        jobs.add(job);
+        repo.save(job);
     }
 
     @Override
     public Job getJobById(Long id) {
-        for (Job job : jobs) {
-            if (job.getId().equals(id))
-                return job;
-        }
-        return null;
+        return repo.findById(id).orElse(null);
     }
 
     @Override
     public boolean deleteById(Long id) {
-        Iterator<Job> iterator = jobs.iterator();
-        while (iterator.hasNext()) {
-            Job job = iterator.next();
-            if (job.getId().equals(id)) {
-                iterator.remove();
-                return true;
-            }
+        try {
+            repo.deleteById(id);
+            return true;
+        } catch (Exception e) {
+            return false;
         }
-        return false;
     }
 
     @Override
     public boolean updateJob(Long id, Job updatedJob) {
-        for (Job job : jobs) {
-            if (job.getId().equals(id)) {
-                job.setTitle(updatedJob.getTitle());
-                job.setDescription(updatedJob.getDescription());
-                job.setMinSalary(updatedJob.getMinSalary());
-                job.setMaxSalary(updatedJob.getMaxSalary());
-                job.setLocation(updatedJob.getLocation());
-                return true;
-            }
+        Optional<Job> optional = repo.findById(id);
+        if (optional.isPresent()) {
+            Job job = optional.get();
+            job.setTitle(updatedJob.getTitle());
+            job.setDescription(updatedJob.getDescription());
+            job.setMinSalary(updatedJob.getMinSalary());
+            job.setMaxSalary(updatedJob.getMaxSalary());
+            job.setLocation(updatedJob.getLocation());
+            repo.save(job);
+            return true;
         }
         return false;
     }
