@@ -5,6 +5,7 @@ import './App.css'
 import Greets from './components/Greets'
 import JSX from './components/JSX'
 import Props from './components/Props'
+import State from './components/State'
 
 // function App() {
 //   return (
@@ -18,10 +19,11 @@ class App extends Component {
       <>
         {/* <Greets /> */}
         {/* <JSX /> */}
-        <Props name="Peter Parker"/>
+        {/* <Props name="Peter Parker"/>
         <Props name="Tony Stark"/>
         <Props name="Bruce Banner" />
-        <Props name="Steve Rogers" />
+        <Props name="Steve Rogers" /> */}
+        <State />
       </>
     )
   }
