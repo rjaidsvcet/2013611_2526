@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Greets from './components/Greets'
 import JSX from './components/JSX'
+import Props from './components/Props'
 
 // function App() {
 //   return (
@@ -16,7 +17,11 @@ class App extends Component {
     return (
       <>
         {/* <Greets /> */}
-        <JSX />
+        {/* <JSX /> */}
+        <Props name="Peter Parker"/>
+        <Props name="Tony Stark"/>
+        <Props name="Bruce Banner" />
+        <Props name="Steve Rogers" />
       </>
     )
   }
