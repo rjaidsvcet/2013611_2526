@@ -5,6 +5,7 @@ import './App.css'
 import SetState from './components/SetState'
 import Destruct from './components/Destruct'
 import EventHandling from './components/EventHandling'
+import EventBinding from './components/EventBinding'
 
 class App extends Component {
   render () {
@@ -12,7 +13,8 @@ class App extends Component {
       // <h1>Hello</h1>
       // <SetState />
       // <Destruct name="Bruce Wayne" heroName="Batman" />
-      <EventHandling />
+      // <EventHandling />
+      <EventBinding />
     )
   }
 }
