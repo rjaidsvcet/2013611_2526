@@ -7,6 +7,7 @@ import Destruct from './components/Destruct'
 import EventHandling from './components/EventHandling'
 import EventBinding from './components/EventBinding'
 import ConditionalRendering from './components/ConditionalRendering'
+import Forms from './components/Forms'
 
 class App extends Component {
   render () {
@@ -16,7 +17,8 @@ class App extends Component {
       // <Destruct name="Bruce Wayne" heroName="Batman" />
       // <EventHandling />
       // <EventBinding />
-      <ConditionalRendering />
+      // <ConditionalRendering />
+      <Forms />
     )
   }
 }
