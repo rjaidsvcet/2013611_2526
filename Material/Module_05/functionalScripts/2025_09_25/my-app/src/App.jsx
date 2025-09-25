@@ -6,6 +6,7 @@ import SetState from './components/SetState'
 import Destruct from './components/Destruct'
 import EventHandling from './components/EventHandling'
 import EventBinding from './components/EventBinding'
+import ConditionalRendering from './components/ConditionalRendering'
 
 class App extends Component {
   render () {
@@ -14,7 +15,8 @@ class App extends Component {
       // <SetState />
       // <Destruct name="Bruce Wayne" heroName="Batman" />
       // <EventHandling />
-      <EventBinding />
+      // <EventBinding />
+      <ConditionalRendering />
     )
   }
 }
