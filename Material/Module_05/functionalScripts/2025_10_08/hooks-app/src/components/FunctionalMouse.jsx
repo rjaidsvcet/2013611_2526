@@ -10,9 +10,19 @@ function FunctionalMouse() {
         setY (e.clientY)
     }
 
+    // useEffect (() => {
+    //     console.log('useEffect Called')
+    //     window.addEventListener('mousemove', logMousePosition)
+    // }, [])
+
     useEffect (() => {
         console.log('useEffect Called')
         window.addEventListener('mousemove', logMousePosition)
+
+        return () => {
+            console.log('useEffect cleanup activated')
+            window.removeEventListener('mousemove', logMousePosition)
+        }
     }, [])
 
     return (
